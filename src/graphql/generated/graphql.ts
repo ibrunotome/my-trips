@@ -1625,7 +1625,7 @@ export type Place = Node & {
   slug: Scalars['String'];
   location: Location;
   description?: Maybe<RichText>;
-  galery: Array<Asset>;
+  gallery: Array<Asset>;
   /** List of Place versions */
   history: Array<Version>;
 };
@@ -1638,7 +1638,7 @@ export type PlaceDocumentInStagesArgs = {
 };
 
 
-export type PlaceGaleryArgs = {
+export type PlaceGalleryArgs = {
   where?: Maybe<AssetWhereInput>;
   orderBy?: Maybe<AssetOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
@@ -1680,7 +1680,7 @@ export type PlaceCreateInput = {
   slug: Scalars['String'];
   location: LocationInput;
   description?: Maybe<Scalars['RichTextAST']>;
-  galery: AssetCreateManyInlineInput;
+  gallery: AssetCreateManyInlineInput;
 };
 
 export type PlaceCreateManyInlineInput = {
@@ -1818,9 +1818,9 @@ export type PlaceManyWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
-  galery_every?: Maybe<AssetWhereInput>;
-  galery_some?: Maybe<AssetWhereInput>;
-  galery_none?: Maybe<AssetWhereInput>;
+  gallery_every?: Maybe<AssetWhereInput>;
+  gallery_some?: Maybe<AssetWhereInput>;
+  gallery_none?: Maybe<AssetWhereInput>;
 };
 
 export enum PlaceOrderByInput {
@@ -1843,7 +1843,7 @@ export type PlaceUpdateInput = {
   slug?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
   description?: Maybe<Scalars['RichTextAST']>;
-  galery?: Maybe<AssetUpdateManyInlineInput>;
+  gallery?: Maybe<AssetUpdateManyInlineInput>;
 };
 
 export type PlaceUpdateManyInlineInput = {
@@ -2023,9 +2023,9 @@ export type PlaceWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
-  galery_every?: Maybe<AssetWhereInput>;
-  galery_some?: Maybe<AssetWhereInput>;
-  galery_none?: Maybe<AssetWhereInput>;
+  gallery_every?: Maybe<AssetWhereInput>;
+  gallery_some?: Maybe<AssetWhereInput>;
+  gallery_none?: Maybe<AssetWhereInput>;
 };
 
 /** References Place record uniquely */
@@ -2379,7 +2379,9 @@ export type GetPageBySlugQuery = (
   )> }
 );
 
-export type GetPlacesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetPlacesQueryVariables = Exact<{
+  first?: Maybe<Scalars['Int']>;
+}>;
 
 
 export type GetPlacesQuery = (
@@ -2393,7 +2395,30 @@ export type GetPlacesQuery = (
     ), description?: Maybe<(
       { __typename?: 'RichText' }
       & Pick<RichText, 'html'>
-    )>, galery: Array<(
+    )>, gallery: Array<(
+      { __typename?: 'Asset' }
+      & Pick<Asset, 'url' | 'height' | 'width'>
+    )> }
+  )> }
+);
+
+export type GetPlaceBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetPlaceBySlugQuery = (
+  { __typename?: 'Query' }
+  & { place?: Maybe<(
+    { __typename?: 'Place' }
+    & Pick<Place, 'id' | 'slug' | 'name'>
+    & { location: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'latitude' | 'longitude'>
+    ), description?: Maybe<(
+      { __typename?: 'RichText' }
+      & Pick<RichText, 'html' | 'text'>
+    )>, gallery: Array<(
       { __typename?: 'Asset' }
       & Pick<Asset, 'url' | 'height' | 'width'>
     )> }
