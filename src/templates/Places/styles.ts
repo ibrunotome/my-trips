@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
 
 export const Container = styled.section`
   max-width: var(--container);
-  padding-bottom: var(--large);
   margin: auto;
 `
 
@@ -25,7 +24,7 @@ export const Body = styled.div`
 
 export const Gallery = styled.div`
   display: grid;
-  margin-top: var(--medium);
+  grid-gap: var(--medium);
 
   img {
     background: #f6f7f8;
@@ -36,7 +35,7 @@ export const Gallery = styled.div`
       #f6f7f8 40%,
       #f6f7f8 100%
     );
-    background-size: 80rem;
+    background-size: 80rem 14rem;
     animation: placeholderShimmer 1s linear infinite forwards;
 
     @keyframes placeholderShimmer {
@@ -47,15 +46,5 @@ export const Gallery = styled.div`
         background-position: 40rem 0;
       }
     }
-  }
-`
-
-export const Caption = styled.p`
-  font-size: var(--small);
-  color: var(--grey);
-  margin-bottom: var(--medium);
-
-  a {
-    font-size: var(--small);
   }
 `

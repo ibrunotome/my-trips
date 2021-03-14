@@ -1,7 +1,8 @@
 import Image from 'next/image'
-import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline'
 
 import LinkWrapper from 'components/LinkWrapper'
+import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline'
+
 import * as S from './styles'
 import { useRouter } from 'next/dist/client/router'
 
@@ -15,7 +16,7 @@ export type PlacesTemplateProps = {
   place: {
     slug: string
     name: string
-    description: {
+    description?: {
       html: string
     }
     gallery: ImageProps[]
